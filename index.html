@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="./logop.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pokedex</title>
+  </head>
+  <body>
+    
+
+    <audio id="bgMusic" loop style="display: none;">
+        <source src="./audio/Opening.mp3" type="audio/mpeg">
+    </audio>
+    
+    <script>
+        window.addEventListener('load', function() {
+            const audio = document.getElementById('bgMusic');
+            let audioStarted = false;
+
+            function startAudio() {
+                if (!audioStarted) {
+                    audio.muted = false;
+                    audio.play().then(() => {
+                        audioStarted = true;
+                        console.log("Audio iniciado exitosamente");
+                    }).catch(function(error) {
+                        console.log("Error reproduciendo el audio:", error);
+                        setTimeout(startAudio, 1000);
+                    });
+                }
+            }
+
+            // Inicia el audio con un delay
+            setTimeout(startAudio, 200);
+
+            // El usuario puede dar click para iniciar el audio
+            document.addEventListener('click', function() {
+                startAudio();
+            });
+
+            audio.addEventListener('pause', function() {
+                if (audioStarted) {
+                    audio.play().catch(error => console.log("Error al reanudar:", error));
+                }
+            });
+        });
+    </script>
+
+    <div id="root"></div>
+    <script type="module" src="./src/main.tsx"></script>
+    
+    
+  </body>
+</html>

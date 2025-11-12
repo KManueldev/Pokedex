@@ -1,0 +1,46 @@
+.invocacionButton {
+  width: 85%;
+  max-width: 350px;
+  margin: 2rem auto 2rem;
+  display: block;
+  background: linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%);
+  border: none;
+  border-radius: 12px;
+  color: white;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 1.3rem 1.5rem;
+  cursor: pointer;
+  box-shadow: 0 8px 20px -5px rgba(124, 58, 237, 0.35);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #8b5cf6 0%, #4f46e5 100%);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 35px -5px rgba(124, 58, 237, 0.6);
+
+    &::before {
+      opacity: 1;
+    }
+  }
+
+  &:active {
+    transform: translateY(0);
+    box-shadow: 0 5px 15px -3px rgba(124, 58, 237, 0.5);
+  }
+
+  span {
+    position: relative;
+    z-index: 1;
+  }
+}
